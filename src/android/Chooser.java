@@ -153,4 +153,15 @@ public class Chooser extends CordovaPlugin {
 			this.callback.error("Failed to read file: " + err.toString());
 		}
 	}
+
+	@Override
+	public Bundle onSaveInstanceState() {
+		Bundle state = new Bundle();
+		state.putString("restoredFileChooser", "restoredForActivityResult");
+		return state;
+	}
+
+	public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
+		this.callback = callbackContext;
+	}
 }
